@@ -1,0 +1,92 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>accont</title>
+    <link rel="stylesheet" href="http://localhost:8080/css/accont.css">
+    <script src="http://localhost:8080/js/axios.js"></script>
+    <script src="http://localhost:8080/js/vue.js"></script>
+</head>
+
+<body>
+    <div id="accont">
+        <div class="container">
+            <div class="leftPic">
+                <img src="http://localhost:8080/img/accont/bc.jpg" alt="">
+            </div>
+            <div class="content">
+                <div class="switch">
+                    <span id='login' :class="{'active':login}" @click="login=true;">登录</span><span>/</span><span id='reg' :class="{'active':!login}" @click="login=false;">注册</span>
+                </div>
+                <div :class="['form',{'login':login},{'reg':!login}]">
+                    <div class="input" placeholder="用户名"><input type="text" name="username" v-model="username"></div>
+                    <div class="input" placeholder="密码"><input type="password" name="password" v-model="password"></div>
+                    <div class="input" id="repeat" placeholder="重复密码"><input type="password" v-model="repeat_password"></div>
+                    <button id="subBtn" @click="go()">{{login?"登录":"注册"}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script>
+        new Vue({
+            el: "#accont",
+            data:{
+                login:true,
+                username:"",
+                password:"",
+                repeat_password:""
+            },
+            methods:{
+                go:function(){
+                    var {username,password,repeat_password}=this;
+                    if(this.login){
+                        if(username===""||password===""){
+                            alert('用户名或密码不能为空');
+                            return;
+                        }
+                        var data={username,password};
+                        axios.post('/accont/login',data).then(function(res){
+                            var {data}=res;
+                            if(data.code===0){
+                                location.href=`http://localhost:8080/accont`;
+                            }else{
+                                alert(data.msg);
+                            }
+                        },function(err){
+                            console.log(err);
+                        });
+                    }else{
+                        if(username===""||password===""){
+                            alert('用户名或密码不能为空');
+                            return;
+                        }
+                        if(password!==repeat_password){
+                            alert('两次密码不一样');
+                            return;
+                        }
+                        var data={username,password};
+                        axios.post('/accont/reg',data).then(function(res){
+                            var {data}=res;
+                            alert(data.msg)
+                        },function(err){
+                            console.log(err);
+                        });
+                    }
+                }
+            }
+        })
+        $('.input input').on('focus', function () {
+            $(this).parents('.input').addClass('action');
+        })
+        $('.input input').on('blur', function () {
+            if ($(this).val() === "") {
+                $(this).parents('.input').removeClass('action');
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,21 @@
+{
+    "beautify.language": {
+        "js": {
+            "type": ["javascript", "json", "jsonc"],
+            "filename": [".jshintrc", ".jsbeautifyrc"]
+            // "ext": ["js", "json"]
+            // ^^ to set extensions to be beautified using the javascript beautifier
+        },
+        "css": ["css", "scss"],
+        "html": ["htm", "html", "vue","ejs"],
+        // ^^ providing just an array sets the VS Code file type
+
+    },
+    "less.compile": {
+        "compress": true, // 是否删除多余空白字符
+        "sourceMap": false, // 是否创建文件目录树，true的话会自动生成一个 .css.map 文件
+        "out": "${workspaceRoot}\\public\\css\\", // 是否输出css文件，false为不输出
+        "outExt": ".css", // 输出文件的后缀,默认为.css
+    },
+    "workbench.iconTheme": "vscode-icons"
+}

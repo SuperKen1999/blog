@@ -1,0 +1,93 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>blog</title>
+    <link rel="stylesheet" href="http://localhost:8080/css/blog.css">
+    <link rel="stylesheet" href="http://localhost:8080/css/header.css">
+    <script src="http://localhost:8080/js/axios.js"></script>
+    <script src="http://localhost:8080/js/vue.js"></script>
+</head>
+
+<body>
+    <div id="header">
+        <div class="container">
+            <h1><a href="http://localhost:8080">所有人的小博客</a></h1>
+            <%  if (username){ %>
+            <div class="header_user">
+                欢迎您：
+                <div class="header_user_data">
+                    <a href="http://localhost:8080/user/<%= username %>"><%= username %></a>
+                    <ul>
+                        <li><a href="http://localhost:8080/user/<%= username %>">个人中心</a></li>
+                        <li><a href="http://localhost:8080/write/blog">写博客</a></li>
+                        <li><a href="http://localhost:8080/accont/logout">退出</a></li>
+                    </ul>
+                </div>
+            </div>
+            <% } else{ %>
+            <div class="header_user">
+                <a href="http://localhost:8080/accont">登录 / 注册</a>
+            </div>
+            <% } %>
+        </div>
+    </div>
+    <div id="body">
+        <div class="container">
+            <div class="top">
+                <h1>
+                    <%= send_data.user%>
+                    <small style="font-size: 12px;font-weight: normal;">
+                        <%= send_data.time%>
+                    </small>
+                </h1>
+                <%= send_data.content%>
+            </div>
+            <div class="comment_box">
+                <h1>评论：</h1>
+                <div class="comment_item">
+                    <h1>
+                        <%= send_data.user%>
+                        <small style="font-size: 12px;font-weight: normal;">
+                            <%= send_data.time%>
+                        </small>
+                    </h1>
+                    <%= send_data.content%>
+                </div>
+                <div class="comment_item">
+                    <h1>
+                        <%= send_data.user%>
+                        <small style="font-size: 12px;font-weight: normal;">
+                            <%= send_data.time%>
+                        </small>
+                    </h1>
+                    <%= send_data.content%>
+                </div>
+                <div class="comment_item">
+                    <h1>
+                        <%= send_data.user%>
+                        <small style="font-size: 12px;font-weight: normal;">
+                            <%= send_data.time%>
+                        </small>
+                    </h1>
+                    <%= send_data.content%>
+                </div>
+                <div class="comment_item">
+                    <h1>
+                        <%= send_data.user%>
+                        <small style="font-size: 12px;font-weight: normal;">
+                            <%= send_data.time%>
+                        </small>
+                    </h1>
+                    <%= send_data.content%>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+
+</body>
+
+</html>

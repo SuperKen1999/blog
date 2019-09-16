@@ -1,0 +1,113 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+li {
+    list-style: none;
+}
+
+#header,
+#body,
+#footer {
+    .container {
+        width: 75rem;
+        position: relative;
+        margin: 0 auto;
+        box-sizing: border-box;
+        padding: 1rem;
+    }
+}
+
+#header {
+    background: linear-gradient(90deg, rgb(181, 154, 254), rgb(254, 154, 181));
+
+    h1 {
+        display: inline;
+        margin-left: 1rem;
+    }
+
+    .header_user {
+        float: right;
+        line-height: 42px;
+        margin: 0 6rem 0 0;
+        display: flex;
+
+        &::after {
+            content: '';
+            clear: both;
+        }
+
+        a:hover {
+            color: white;
+        }
+
+        .header_user_data {
+            position: relative;
+            cursor: pointer;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            &>a{
+                padding: 0 1rem;
+            }
+            ul {
+                box-sizing: border-box;
+                width: 10rem;
+                background: white;
+                position: absolute;
+                top: 150%;
+                z-index: -1;
+                transition: .3s .5s;
+                opacity: 0;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                border: .1rem solid #fe9ab5;
+                border-radius: .6rem;
+                padding: .5rem 0;
+                background: linear-gradient(90deg, rgb(181, 154, 254), rgb(254, 154, 181));
+                li {
+                    box-sizing: border-box;
+                    width: 80%;
+                    text-align: center;
+                    border-radius: .6rem;
+                    &>a{
+                        display: block;
+                        widows: 100%;
+                    }
+
+                    &:hover {
+                        background: white;
+                        &>a {
+                            color: #fe9ab5;
+                        }
+                    }
+                }
+            }
+
+            &:hover {
+                background-color: white;
+                border-radius: .2rem;
+                &>a{
+                    color: #fe9ab5;
+                }
+
+                ul {
+                    opacity: 1;
+                    top: 100%;
+                    z-index:100;
+                }
+            }
+
+        }
+
+    }
+}

@@ -1,0 +1,126 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>home</title>
+    <link rel="stylesheet" href="http://localhost:8080/css/home.css">
+    <link rel="stylesheet" href="http://localhost:8080/css/header.css">
+    <script src="http://localhost:8080/js/axios.js"></script>
+    <script src="http://localhost:8080/js/vue.js"></script>
+</head>
+
+<body>
+    <div id="header">
+        <div class="container">
+            <h1><a href="http://localhost:8080">所有人的小博客</a></h1>
+            <% if (homeInit.login){ %>
+            <div class="header_user">
+                欢迎您：
+                <div class="header_user_data">
+                    <a href="http://localhost:8080/user/<%= homeInit.user %>"><%= homeInit.user %></a>
+                    <ul>
+                        <li><a href="http://localhost:8080/user/<%= homeInit.user %>">个人中心</a></li>
+                        <li><a href="http://localhost:8080/user/<%= homeInit.user %>">写博客</a></li>
+                        <li><a href="http://localhost:8080/accont/logout">退出</a></li>
+                    </ul>
+                </div>
+            </div>
+            <% }else{ %>
+            <div class="header_user">
+                <a href="http://localhost:8080/accont">登录 / 注册</a>
+            </div>
+            <% } %>
+        </div>
+    </div>
+    <div id="body">
+        <div class="container">
+
+            <% 
+            var {blog_data}= homeInit;
+            for(var i=0;i<blog_data.length/2;i++){
+                var temp=blog_data[i];
+                blog_data[i]=blog_data[blog_data.length-1-i];
+                blog_data[blog_data.length-1-i]=temp;
+            }
+            var leftArr=[],midArr=[],rightArr=[];
+            for(var key in blog_data){ 
+                var i=(key)%3;
+                switch(i){
+                    case 0:
+                        leftArr.push(blog_data[key]);
+                        break;
+                    case 1:
+                        midArr.push(blog_data[key]);
+                        break;
+                    case 2:
+                        rightArr.push(blog_data[key]);
+                        break;
+                }
+            }
+            %>
+            <div class="leftbox">
+                <% for(var item of leftArr){%>
+                <a class="item" href="http://localhost:8080/blog/<%= item.blog_id %>" target="_blank">
+                    <div class="item_info">
+                        <div class="info_user">
+                            <%= item.user%>
+                        </div>
+                        <div class="info_time">
+                            <%= item.time%>
+                        </div>
+                    </div>
+                    <div class="item_content">
+                        <%= item.content%>
+                    </div>
+                </a>
+                <% }%>
+            </div>
+            <div class="midbox">
+                <% for(var item of midArr){%>
+                <a class="item" href="http://localhost:8080/blog/<%= item.blog_id %>" target="_blank">
+                    <div class="item_info">
+                        <div class="info_user">
+                            <%= item.user%>
+                        </div>
+                        <div class="info_time">
+                            <%= item.time%>
+                        </div>
+                    </div>
+                    <div class="item_content">
+                        <%= item.content%>
+                    </div>
+                </a>
+                <% }%>
+            </div>
+            <div class="rightbox">
+                <% for(var item of rightArr){%>
+                <a class="item" href="http://localhost:8080/blog/<%= item.blog_id %>" target="_blank">
+                    <div class="item_info">
+                        <div class="info_user">
+                            <%= item.user%>
+                        </div>
+                        <div class="info_time">
+                            <%= item.time%>
+                        </div>
+                    </div>
+                    <div class="item_content">
+                        <%= item.content%>
+                    </div>
+                </a>
+                <% }%>
+            </div>
+        </div>
+    </div>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script>
+        
+    </script>
+    <div id="footer">
+        <div class="container">
+        </div>
+    </div>
+</body>
+
+</html>

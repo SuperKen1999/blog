@@ -1,0 +1,117 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+li {
+    list-style: none;
+}
+body{
+    background:linear-gradient(90deg, rgb(181, 154, 254), rgb(254, 154, 181)) fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.container {
+    width: 75rem;
+    padding: 1rem;
+    box-sizing: border-box;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+}
+.leftPic{
+    width: 60rem;
+    img{
+        width: 100%;
+    }
+}
+.content {
+    position: relative;
+    left:-10rem;
+    height: 25rem;
+    .switch {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        span {
+            color: #ccc;
+            font-size: 1.8rem;
+            cursor: pointer;
+
+            &.active {
+                color: rgb(254, 154, 181);
+            }
+        }
+    }
+
+    .form {
+        width: 15rem;
+        margin: 2rem 0 0;
+
+        &.login {
+            #repeat {
+                height: 0;
+                opacity: 0;
+                transition: .3s;
+                z-index: -1;
+            }
+        }
+        &.reg {
+            #repeat {
+                opacity: 1;
+                transition: .3s;
+                z-index: 10;
+            }
+        }
+        .input {
+            width: 100%;
+            margin: 2rem 0 0;
+            height: 2rem;
+            position: relative;
+            &::after {
+                content: attr(placeholder);
+                position: absolute;
+                left: 0;
+                top: -10%;
+                font-size: 1.4rem;
+                transition: .3s;
+                z-index: 0;
+            }
+            &.action::after {
+                top: -70%;
+                font-size: .8rem;
+            }
+            input {
+                width: 100%;
+                border: none;
+                outline: none;
+                border-bottom: .1rem solid rgb(254, 154, 181);
+                font-size: 1.5rem;
+                background-color:rgba(0,0,0,0);
+                position: relative;
+                z-index: 10;
+            }
+        }
+
+        #subBtn {
+            margin: 2rem 0 0;
+            width: 100%;
+            height: 3.5rem;
+            border-radius: 3rem;
+            border: none;
+            outline: none;
+            background: linear-gradient(90deg, rgb(181, 154, 254), rgb(254, 154, 181));
+            cursor: pointer;
+            box-shadow: 0 0 8px rgb(181, 154, 254);
+            font-size: 1.2rem;
+        }
+    }
+}
